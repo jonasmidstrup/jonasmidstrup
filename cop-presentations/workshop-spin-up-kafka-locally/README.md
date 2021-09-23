@@ -13,7 +13,7 @@
 ## 1. Fly-in
 
 * Quick explanation of the EMP setup
-  * Kafka - originally made by LinkedIn - now an Apache project
+  * Kafka - originally made by LinkedIn - [now an Apache project](https://kafka.apache.org/)
   * EMP: Confluent - Managed Kafka on Azure
   * At least three clusters: on-prem, non-prod and cloud-prod
 * Tried to setup a connection to the EMP (Kafka) clusters for both consuming and producing dated schedules.
