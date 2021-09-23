@@ -20,8 +20,19 @@
 * Hard to play around and try things with both configuration and producing data (affects all consumers).
 * Confluent makes their products available on dockerhub: https://docs.confluent.io/platform/current/quickstart/ce-docker-quickstart.html
 * Spin up a local Kafka cluster in docker and start playing around...
+* For this workshop, we will use the Nucleus.Kafka packages.
 
 ## 2. How to run kafka clusters in Docker
 
 * It's possible to spin-up a full local Kafka cluster in docker: https://github.com/Maersk-Global/nucleus-kafka/wiki/Getting-Started~-Local-hosted-Kafka-cluster
-* 
+* Try it out and spin up the cluster!
+  * Look at the endpoints and open the Control Center: https://github.com/Maersk-Global/nucleus-kafka/wiki/Getting-Started~-Local-hosted-Kafka-cluster#endpoints
+* Create and configuring a topic. Schema files: https://github.com/Maersk-Global/nexus-emp-schema-dated-schedules
+
+## 3. Producing events to Kafka
+
+https://github.com/Maersk-Global/nucleus-kafka/wiki/Getting-Started~-How-to-produce-data
+
+## 4. Consuming events from Kafka
+
+https://github.com/Maersk-Global/nucleus-kafka/wiki/Getting-Started~-How-to-consume-data
