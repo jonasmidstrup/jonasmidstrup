@@ -10,7 +10,6 @@
     using Nucleus.Kafka.Consuming.Configuration;
     using Nucleus.Kafka.SchemaRegistry.Abstractions.Configuration;
     using Nucleus.Kafka.SchemaRegistry.Avro;
-    using System.Collections.Generic;
     using System.Threading;
 
     internal class Program

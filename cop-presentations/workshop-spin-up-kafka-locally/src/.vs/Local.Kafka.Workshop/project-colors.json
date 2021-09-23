@@ -10,7 +10,17 @@
       "ProjectGuid": "0139b02c-fc0e-4df6-972f-dec49101ec6a",
       "DisplayName": "Local.Kafka.Workshop.Consumer",
       "ColorIndex": 1
+    },
+    "80c67e71-8f2a-4bfc-a30e-11e8c0cc4cc9": {
+      "ProjectGuid": "80c67e71-8f2a-4bfc-a30e-11e8c0cc4cc9",
+      "DisplayName": "Solution Items",
+      "ColorIndex": 2
+    },
+    "6c38a07a-cafa-4ec5-8718-891d06f6d363": {
+      "ProjectGuid": "6c38a07a-cafa-4ec5-8718-891d06f6d363",
+      "DisplayName": "Local.Kafka.Workshop.Emp.Domain",
+      "ColorIndex": 3
     }
   },
-  "NextColorIndex": 2
+  "NextColorIndex": 4
 }
