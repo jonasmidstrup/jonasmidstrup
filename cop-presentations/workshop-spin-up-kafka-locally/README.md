@@ -36,6 +36,7 @@
 * Add the code for producing data - use the simple approach: https://github.com/Maersk-Global/nucleus-kafka/wiki/Getting-Started~-How-to-produce-data
 * Confluent Schema Registry and how it works...
 * Copy the auto-generated Avro files: https://github.com/Maersk-Global/nexus-emp-schema-dated-schedules/tree/main/src/Nexus.Emp.Schema.DatedSchedules.Domain
+* Use the dummy example for a Kafka message in the README file: https://github.com/Maersk-Global/nexus-emp-schema-dated-schedules/blob/main/README.md 
 
 ## 4. Consuming events from Kafka
 
