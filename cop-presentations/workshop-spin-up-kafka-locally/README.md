@@ -27,9 +27,13 @@
 * It's possible to spin-up a full local Kafka cluster in docker: https://github.com/Maersk-Global/nucleus-kafka/wiki/Getting-Started~-Local-hosted-Kafka-cluster
 * Try it out and spin up the cluster!
   * Look at the endpoints and open the Control Center: https://github.com/Maersk-Global/nucleus-kafka/wiki/Getting-Started~-Local-hosted-Kafka-cluster#endpoints
-* Create and configuring a topic. Schema files: https://github.com/Maersk-Global/nexus-emp-schema-dated-schedules
+* Create and configuring a topic `MSK.schedule.datedSchedule.topic.public.any.v5`.
+* Add schema for key and value. Files: https://github.com/Maersk-Global/nexus-emp-schema-dated-schedules/tree/main/schemas
 
 ## 3. Producing events to Kafka
+
+* Create a new console app in Visual Studio. This will be used throughout the workshop.
+* Add the code for producing data.
 
 https://github.com/Maersk-Global/nucleus-kafka/wiki/Getting-Started~-How-to-produce-data
 
