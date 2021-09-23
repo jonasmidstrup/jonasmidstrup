@@ -40,8 +40,14 @@
 
 ## 4. Consuming events from Kafka
 
+* Consumers and partitions.
+* Consumer groups, subscription and rebalancing.
 * Create a new console app for the consumer - use the simple approach: https://github.com/Maersk-Global/nucleus-kafka/wiki/Getting-Started~-How-to-consume-data
+* Start a consumer and see your messages consumed from the Kafka.
+* Try starting or stopping consumers and watch how Kafka handles everything for you.
 
 ## 5. Reusable .NET libraries to work with Kafka
 
-https://github.com/orgs/Maersk-Global/packages?repo_name=nucleus-kafka
+* Shown the simple approach for the sake of explanation, but it's also possible to hook everything up using dependency injection. The way to go.
+* Also possible to use ApplicationInsights for logging (or other logging solutions - we use Elastic).
+* Packages here: https://github.com/orgs/Maersk-Global/packages?repo_name=nucleus-kafka
