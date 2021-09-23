@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "823430bd-5f1e-4629-b39a-994db06238c9": {
+      "ProjectGuid": "823430bd-5f1e-4629-b39a-994db06238c9",
+      "DisplayName": "Local.Kafka.Workshop.Producer",
+      "ColorIndex": 0
+    },
+    "0139b02c-fc0e-4df6-972f-dec49101ec6a": {
+      "ProjectGuid": "0139b02c-fc0e-4df6-972f-dec49101ec6a",
+      "DisplayName": "Local.Kafka.Workshop.Consumer",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}

@@ -71,5 +71,7 @@ printfn "Hello, FSI!"
 - ;;
 ```
 
-// https://docs.microsoft.com/en-us/dotnet/fsharp/
-// https://fsharpforfunandprofit.com/
+### Useful links
+
+* https://docs.microsoft.com/en-us/dotnet/fsharp/
+* https://fsharpforfunandprofit.com/
