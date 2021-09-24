@@ -50,4 +50,5 @@
 
 * Shown the simple approach for the sake of explanation, but it's also possible to hook everything up using dependency injection. The way to go.
 * Also possible to use ApplicationInsights for logging (or other logging solutions - we use Elastic).
+* More on how to auto-generate avro schema files: https://github.com/Maersk-Global/nexus/wiki/Architecture~-EMP-(Event-Management-Platform)#generating-dto-classes-from-avro-schema-files
 * Packages here: https://github.com/orgs/Maersk-Global/packages?repo_name=nucleus-kafka
