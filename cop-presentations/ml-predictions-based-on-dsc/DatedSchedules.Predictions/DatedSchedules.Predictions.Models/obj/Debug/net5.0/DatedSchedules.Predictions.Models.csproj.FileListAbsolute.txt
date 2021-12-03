@@ -1,0 +1,12 @@
+C:\dev\jonasmidstrup\DatedSchedules.Predictions\DatedSchedules.Predictions.Models\bin\Debug\net5.0\DatedSchedules.Predictions.Models.deps.json
+C:\dev\jonasmidstrup\DatedSchedules.Predictions\DatedSchedules.Predictions.Models\bin\Debug\net5.0\DatedSchedules.Predictions.Models.dll
+C:\dev\jonasmidstrup\DatedSchedules.Predictions\DatedSchedules.Predictions.Models\bin\Debug\net5.0\ref\DatedSchedules.Predictions.Models.dll
+C:\dev\jonasmidstrup\DatedSchedules.Predictions\DatedSchedules.Predictions.Models\bin\Debug\net5.0\DatedSchedules.Predictions.Models.pdb
+C:\dev\jonasmidstrup\DatedSchedules.Predictions\DatedSchedules.Predictions.Models\obj\Debug\net5.0\DatedSchedules.Predictions.Models.csproj.AssemblyReference.cache
+C:\dev\jonasmidstrup\DatedSchedules.Predictions\DatedSchedules.Predictions.Models\obj\Debug\net5.0\DatedSchedules.Predictions.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\dev\jonasmidstrup\DatedSchedules.Predictions\DatedSchedules.Predictions.Models\obj\Debug\net5.0\DatedSchedules.Predictions.Models.AssemblyInfoInputs.cache
+C:\dev\jonasmidstrup\DatedSchedules.Predictions\DatedSchedules.Predictions.Models\obj\Debug\net5.0\DatedSchedules.Predictions.Models.AssemblyInfo.cs
+C:\dev\jonasmidstrup\DatedSchedules.Predictions\DatedSchedules.Predictions.Models\obj\Debug\net5.0\DatedSchedules.Predictions.Models.csproj.CoreCompileInputs.cache
+C:\dev\jonasmidstrup\DatedSchedules.Predictions\DatedSchedules.Predictions.Models\obj\Debug\net5.0\DatedSchedules.Predictions.Models.dll
+C:\dev\jonasmidstrup\DatedSchedules.Predictions\DatedSchedules.Predictions.Models\obj\Debug\net5.0\ref\DatedSchedules.Predictions.Models.dll
+C:\dev\jonasmidstrup\DatedSchedules.Predictions\DatedSchedules.Predictions.Models\obj\Debug\net5.0\DatedSchedules.Predictions.Models.pdb
