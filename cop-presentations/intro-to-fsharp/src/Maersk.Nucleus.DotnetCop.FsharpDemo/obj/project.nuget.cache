@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "00nlk6ioLT1kn1/KZvvNp4IcsPvAXly4TcycPZUpbyFWNk7RqJx/nGNKDyAQ7a4V8wClc6MPkfAmsACWaNwImg==",
+  "success": true,
+  "projectFilePath": "C:\\dev\\cop\\fsharp\\Maersk.Nucleus.DotnetCop.FsharpDemo\\Maersk.Nucleus.DotnetCop.FsharpDemo.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\JMI154\\.nuget\\packages\\fsharp.core\\5.0.1\\fsharp.core.5.0.1.nupkg.sha512",
+    "C:\\Users\\JMI154\\.nuget\\packages\\fsharp.data\\3.3.3\\fsharp.data.3.3.3.nupkg.sha512",
+    "C:\\Users\\JMI154\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
