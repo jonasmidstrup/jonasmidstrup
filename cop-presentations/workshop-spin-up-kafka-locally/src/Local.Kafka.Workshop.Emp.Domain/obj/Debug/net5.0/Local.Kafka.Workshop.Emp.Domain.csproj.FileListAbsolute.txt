@@ -1,0 +1,11 @@
+C:\dev\jonasmidstrup\cop-presentations\workshop-spin-up-kafka-locally\src\Local.Kafka.Workshop.Emp.Domain\bin\Debug\net5.0\Local.Kafka.Workshop.Emp.Domain.deps.json
+C:\dev\jonasmidstrup\cop-presentations\workshop-spin-up-kafka-locally\src\Local.Kafka.Workshop.Emp.Domain\bin\Debug\net5.0\Local.Kafka.Workshop.Emp.Domain.dll
+C:\dev\jonasmidstrup\cop-presentations\workshop-spin-up-kafka-locally\src\Local.Kafka.Workshop.Emp.Domain\bin\Debug\net5.0\ref\Local.Kafka.Workshop.Emp.Domain.dll
+C:\dev\jonasmidstrup\cop-presentations\workshop-spin-up-kafka-locally\src\Local.Kafka.Workshop.Emp.Domain\bin\Debug\net5.0\Local.Kafka.Workshop.Emp.Domain.pdb
+C:\dev\jonasmidstrup\cop-presentations\workshop-spin-up-kafka-locally\src\Local.Kafka.Workshop.Emp.Domain\obj\Debug\net5.0\Local.Kafka.Workshop.Emp.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\dev\jonasmidstrup\cop-presentations\workshop-spin-up-kafka-locally\src\Local.Kafka.Workshop.Emp.Domain\obj\Debug\net5.0\Local.Kafka.Workshop.Emp.Domain.AssemblyInfoInputs.cache
+C:\dev\jonasmidstrup\cop-presentations\workshop-spin-up-kafka-locally\src\Local.Kafka.Workshop.Emp.Domain\obj\Debug\net5.0\Local.Kafka.Workshop.Emp.Domain.AssemblyInfo.cs
+C:\dev\jonasmidstrup\cop-presentations\workshop-spin-up-kafka-locally\src\Local.Kafka.Workshop.Emp.Domain\obj\Debug\net5.0\Local.Kafka.Workshop.Emp.Domain.csproj.CoreCompileInputs.cache
+C:\dev\jonasmidstrup\cop-presentations\workshop-spin-up-kafka-locally\src\Local.Kafka.Workshop.Emp.Domain\obj\Debug\net5.0\Local.Kafka.Workshop.Emp.Domain.dll
+C:\dev\jonasmidstrup\cop-presentations\workshop-spin-up-kafka-locally\src\Local.Kafka.Workshop.Emp.Domain\obj\Debug\net5.0\ref\Local.Kafka.Workshop.Emp.Domain.dll
+C:\dev\jonasmidstrup\cop-presentations\workshop-spin-up-kafka-locally\src\Local.Kafka.Workshop.Emp.Domain\obj\Debug\net5.0\Local.Kafka.Workshop.Emp.Domain.pdb
