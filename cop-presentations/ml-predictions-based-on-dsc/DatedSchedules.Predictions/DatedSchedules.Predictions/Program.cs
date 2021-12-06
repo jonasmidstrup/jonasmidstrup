@@ -36,34 +36,30 @@ namespace DatedSchedules.Predictions
 
                     if (tz is not null)
                     {
-                        output.LocalProformaArrivalEpoch = ConvertToDateTimeOffset(input.ProformaArrival, tz).ToUnixTimeSeconds();
-                        output.LocalProformaDepartureEpoch = ConvertToDateTimeOffset(input.ProformaDeparture, tz).ToUnixTimeSeconds();
-                        output.LocalScheduledArrivalEpoch = ConvertToDateTimeOffset(input.ScheduledArrival, tz).ToUnixTimeSeconds();
-                        output.LocalScheduledDepartureEpoch = ConvertToDateTimeOffset(input.ScheduledDeparture, tz).ToUnixTimeSeconds();
-                        output.LocalActualArrivalEpoch = ConvertToDateTimeOffset(input.ActualArrival, tz).ToUnixTimeSeconds();
-                        output.LocalActualDepartureEpoch = ConvertToDateTimeOffset(input.ActualDeparture, tz).ToUnixTimeSeconds();
+                        output.LocalProformaArrivalEpoch = timeZoneConverter.ConvertToDateTimeOffset(input.ProformaArrival, tz).ToUnixTimeSeconds();
+                        output.LocalProformaDepartureEpoch = timeZoneConverter.ConvertToDateTimeOffset(input.ProformaDeparture, tz).ToUnixTimeSeconds();
+                        output.LocalScheduledArrivalEpoch = timeZoneConverter.ConvertToDateTimeOffset(input.ScheduledArrival, tz).ToUnixTimeSeconds();
+                        output.LocalScheduledDepartureEpoch = timeZoneConverter.ConvertToDateTimeOffset(input.ScheduledDeparture, tz).ToUnixTimeSeconds();
+                        output.LocalActualArrivalEpoch = timeZoneConverter.ConvertToDateTimeOffset(input.ActualArrival, tz).ToUnixTimeSeconds();
+                        output.LocalActualDepartureEpoch = timeZoneConverter.ConvertToDateTimeOffset(input.ActualDeparture, tz).ToUnixTimeSeconds();
                         output.ActualizedArrivalDifference = output.LocalActualArrivalEpoch - output.LocalProformaArrivalEpoch;
                         output.ActualizedDepartureDifference = output.LocalActualDepartureEpoch - output.LocalProformaDepartureEpoch;
                     }
                 }
             };
 
-            var omittedColumns = new[]
+            var categoricalColumns = new[]
             {
-                "ScheduleEntryKey",
-                "ProformaArrival",
-                "ProformaDeparture",
-                "ScheduledArrival",
-                "ScheduledDeparture",
-                "ActualArrival",
-                "ActualDeparture",
-                "LocationTimeZoneName"
+                "VesselCode",
+                "ArrivalServiceCode",
+                "PreviousTerminalCode",
+                "TerminalCode"
             };
 
             var categoricalColumnPairs =
                 data.Schema
                     .Select(column => column.Name)
-                    .Where(columnName => !omittedColumns.Contains(columnName))
+                    .Where(columnName => categoricalColumns.Contains(columnName))
                     .Select(columnName => new InputOutputColumnPair("Categorical" + columnName, columnName))
                     .ToArray();
 
@@ -136,37 +132,10 @@ namespace DatedSchedules.Predictions
                 localTimeZoneName,
                 terminalCode);
 
-            var localProformaArrival = ConvertToDateTimeOffset(localProformaArrivalTimestamp, tz);
+            var localProformaArrival = timeZoneConverter.ConvertToDateTimeOffset(localProformaArrivalTimestamp, tz);
 
             var diff = TimeSpan.FromSeconds(predictedActualArrivalDifference);
             return localProformaArrival.Add(diff);
-        }
-
-        private static DateTimeOffset ConvertToDateTimeOffset(string localTimestamp, DateTimeZone dateTimeZone)
-        {
-            const string CsvTimestampFormat = "yyyy-MM-ddTHH:mm:ss";
-
-            if (string.IsNullOrWhiteSpace(localTimestamp) || localTimestamp == "1900-01-01T00:00:00")
-            {
-                return DateTimeOffset.MinValue;
-            }
-
-            var pattern = LocalDateTimePattern.CreateWithInvariantCulture(CsvTimestampFormat);
-            var parseResult = pattern.Parse(localTimestamp);
-
-            if (parseResult.Success)
-            {
-                var localDateTime = parseResult.Value;
-
-                var zoneDateTime = localDateTime.InZoneLeniently(dateTimeZone);
-                var localTimeWithOffset = zoneDateTime.ToDateTimeOffset();
-
-                return localTimeWithOffset;
-            }
-            else
-            {
-                return DateTimeOffset.MinValue;
-            }
         }
     }
 }

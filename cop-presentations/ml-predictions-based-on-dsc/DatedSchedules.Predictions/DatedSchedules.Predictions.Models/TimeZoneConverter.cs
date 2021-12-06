@@ -2,6 +2,7 @@
 {
     using System;
     using NodaTime;
+    using NodaTime.Text;
 
     public class TimeZoneConverter : ITimeZoneConverter
     {
@@ -44,6 +45,33 @@
             }
 
             return dateTimeZone;
+        }
+
+        public DateTimeOffset ConvertToDateTimeOffset(string localTimestamp, DateTimeZone dateTimeZone)
+        {
+            const string CsvTimestampFormat = "yyyy-MM-ddTHH:mm:ss";
+
+            if (string.IsNullOrWhiteSpace(localTimestamp) || localTimestamp == "1900-01-01T00:00:00")
+            {
+                return DateTimeOffset.MinValue;
+            }
+
+            var pattern = LocalDateTimePattern.CreateWithInvariantCulture(CsvTimestampFormat);
+            var parseResult = pattern.Parse(localTimestamp);
+
+            if (parseResult.Success)
+            {
+                var localDateTime = parseResult.Value;
+
+                var zoneDateTime = localDateTime.InZoneLeniently(dateTimeZone);
+                var localTimeWithOffset = zoneDateTime.ToDateTimeOffset();
+
+                return localTimeWithOffset;
+            }
+            else
+            {
+                return DateTimeOffset.MinValue;
+            }
         }
 
         private string PatchAndMapLocalTimeZoneNameFromTerminalCode(string terminalCode)
