@@ -118,11 +118,19 @@
           "dependencies": {
             "Microsoft.ML": {
               "target": "Package",
-              "version": "[1.6.0, )"
+              "version": "[1.7.0, )"
+            },
+            "Microsoft.ML.AutoML": {
+              "target": "Package",
+              "version": "[0.19.0, )"
             },
             "Microsoft.ML.FastTree": {
               "target": "Package",
-              "version": "[1.6.0, )"
+              "version": "[1.7.0, )"
+            },
+            "Microsoft.ML.LightGbm": {
+              "target": "Package",
+              "version": "[1.7.0, )"
             }
           },
           "imports": [
@@ -135,6 +143,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[5.0.12, 5.0.12]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"

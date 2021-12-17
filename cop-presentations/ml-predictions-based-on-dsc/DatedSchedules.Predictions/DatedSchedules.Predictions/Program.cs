@@ -1,7 +1,7 @@
 ﻿using DatedSchedules.Predictions.Models;
 using Microsoft.ML;
-using NodaTime;
-using NodaTime.Text;
+using Microsoft.ML.AutoML;
+using Microsoft.ML.Data;
 using System;
 using System.IO;
 using System.Linq;
@@ -10,132 +10,104 @@ namespace DatedSchedules.Predictions
 {
     internal class Program
     {
-        private static readonly ITimeZoneConverter timeZoneConverter = new TimeZoneConverter(DateTimeZoneProviders.Tzdb);
-
+        // https://www.red-gate.com/simple-talk/development/data-science-development/insurance-price-prediction-using-machine-learning-ml-net/
         public static void Main(string[] args)
         {
             var mlContext = new MLContext();
 
-            var textLoader = mlContext.Data.CreateTextLoader<DatedScheduleData>(
+            var textLoader = mlContext.Data.CreateTextLoader<SanitizedDatedSchedule>(
                 separatorChar: ',',
                 hasHeader: true,
                 allowQuoting: true,
                 trimWhitespace: true);
 
-            var csvFiles = Directory.GetFiles(@"C:\Temp\GSIS_v5_data\V5_DATA_NEW_BATCH", "*.csv", SearchOption.AllDirectories);
+            var csvFiles = Directory.GetFiles(
+                @"C:\Temp\GSIS_sanitized_data",
+                "*.csv",
+                SearchOption.AllDirectories);
             
             var data = textLoader.Load(csvFiles);
 
-            Action<DatedScheduleData, DateDifferenceCustomMapping> diffMapping = (input, output) =>
-            {
-                if (input.ArrivalStatus == "ACTUALISED")
+            //GetBestModel(mlContext, data);
+
+            var dataProcessPipeline = mlContext.Transforms.Categorical.OneHotEncoding(new[]
                 {
-                    var tz = timeZoneConverter.ConvertToDateTimeZoneFromLocalTimeZoneName(
-                        input.LOC_TZNAME,
-                        input.TerminalCode);
-
-                    if (tz is not null)
-                    {
-                        output.LocalProformaArrivalEpoch = timeZoneConverter.ConvertToDateTimeOffset(input.ProformaArrival, tz).ToUnixTimeSeconds();
-                        output.LocalProformaDepartureEpoch = timeZoneConverter.ConvertToDateTimeOffset(input.ProformaDeparture, tz).ToUnixTimeSeconds();
-                        output.LocalScheduledArrivalEpoch = timeZoneConverter.ConvertToDateTimeOffset(input.ScheduledArrival, tz).ToUnixTimeSeconds();
-                        output.LocalScheduledDepartureEpoch = timeZoneConverter.ConvertToDateTimeOffset(input.ScheduledDeparture, tz).ToUnixTimeSeconds();
-                        output.LocalActualArrivalEpoch = timeZoneConverter.ConvertToDateTimeOffset(input.ActualArrival, tz).ToUnixTimeSeconds();
-                        output.LocalActualDepartureEpoch = timeZoneConverter.ConvertToDateTimeOffset(input.ActualDeparture, tz).ToUnixTimeSeconds();
-                        output.ActualizedArrivalDifference = output.LocalActualArrivalEpoch - output.LocalProformaArrivalEpoch;
-                        output.ActualizedDepartureDifference = output.LocalActualDepartureEpoch - output.LocalProformaDepartureEpoch;
-                    }
-                }
-            };
-
-            var categoricalColumns = new[]
-            {
-                "VesselCode",
-                "ArrivalServiceCode",
-                "PreviousTerminalCode",
-                "TerminalCode"
-            };
-
-            var categoricalColumnPairs =
-                data.Schema
-                    .Select(column => column.Name)
-                    .Where(columnName => categoricalColumns.Contains(columnName))
-                    .Select(columnName => new InputOutputColumnPair("Categorical" + columnName, columnName))
-                    .ToArray();
-
-            var featuresColumnNames =
-                categoricalColumnPairs
-                    .Select(pair => pair.OutputColumnName)
-                    .ToList();
-
-            featuresColumnNames.Add("ActualizedArrivalDifference");
-            //featuresColumnNames.Add("ActualizedDepartureDifference");
-
-            var pipeline = mlContext.Transforms.CustomMapping(diffMapping, contractName: null)
-                .Append(mlContext.Transforms.Categorical.OneHotEncoding(categoricalColumnPairs))
+                    new InputOutputColumnPair("CategoricalVesselCode", "VesselCode"),
+                    new InputOutputColumnPair("CategoricalArrivalServiceCode", "ArrivalServiceCode"),
+                    new InputOutputColumnPair("CategoricalPreviousTerminalCode", "PreviousTerminalCode"),
+                    new InputOutputColumnPair("CategoricalTerminalCode", "TerminalCode"),
+                })
                 .Append(mlContext.Transforms.Concatenate(
                     "Features",
-                    featuresColumnNames.ToArray())
-                    //.Append(mlContext.Transforms.NormalizeMinMax("Features"))
-                    )
-                .Append(mlContext.Transforms.CopyColumns("Label", "ActualizedArrivalDifference"))
-                .Append(mlContext.Regression.Trainers.FastTree());
+                    new[]
+                    {
+                        "CategoricalVesselCode",
+                        "CategoricalArrivalServiceCode",
+                        "CategoricalPreviousTerminalCode",
+                        "CategoricalTerminalCode",
+                        "ActualizedArrivalDifference"
+                    }));
 
-            var model = pipeline.Fit(data);
+            var trainer = dataProcessPipeline
+                .Append(mlContext.Regression.Trainers.LightGbm(labelColumnName: "ActualizedArrivalDifference"));
 
-            var engine = mlContext.Model.CreatePredictionEngine<DatedScheduleData, DatedSchedulePrediction>(model);
+            var trainingPipeline = dataProcessPipeline.Append(trainer);
 
-            var currentDatedSchedule = new DatedScheduleData
+            var model = trainingPipeline.Fit(data);
+
+            var crossValidationResults = mlContext.Regression.CrossValidate(
+                data,
+                trainingPipeline,
+                numberOfFolds: 5,
+                labelColumnName: "ActualizedArrivalDifference");
+            
+            var engine = mlContext.Model.CreatePredictionEngine<SanitizedDatedSchedule, DatedSchedulePrediction>(model);
+
+            var currentDatedSchedule = new SanitizedDatedSchedule
             {
-                RotationId = "121902",
-                IMONumber = "9443463",
-                VesselCode = "E8U",
-                ArrivalVoyage = "074E",
-                DepartureVoyage = "074E",
-                ArrivalServiceCode = "MW1",
-                ArrivalTransportMode = "MVS",
-                DepartureServiceCode = "MW1",
-                DepartureTransportMode = "MVS",
-                PrevCityCode = "GHTMA",
-                PrevTerminalCode = "GHTMAMP",
-                prevCityGeoCode = "12LVNL5YRODQ7",
-                PrevTerminalGeoCode = "3QD3J3O73O2AH",
-                PrevArrivalVoyage = "073W",
-                PrevDepartureVoyage = "074E",
-                CityCode = "ZACPT",
-                TerminalCode = "ZACPT04",
-                CityGeoCode = "1YMUUYV0PBYWV",
-                TerminalGeoCode = "1V2PP78R82YDB",
-                NextCityCode = "ZAPLZ",
-                NextTerminalCode = "ZAPLZ02",
-                ProformaArrival = "2018-03-29T23:30:00",
-                ScheduledArrival = "2018-03-30T05:00:00",
-                LOC_TZNAME = "Africa/Johannesburg"
+                VesselCode = "2AM",
+                ArrivalServiceCode = "432",
+                TerminalCode = "EGSUCCN",
+                PreviousTerminalCode = "MYTPPTM",
+                ProformaArrival = "2022-01-20T06:20:00.0000000+02:00"
             };
 
             var prediction = engine.Predict(currentDatedSchedule);
 
             var predictedActualArrival = GetPredictedActualArrival(
                 prediction.PredictedArrivalDifference,
-                currentDatedSchedule.TerminalCode,
-                currentDatedSchedule.ProformaArrival,
-                currentDatedSchedule.LOC_TZNAME);
+                DateTimeOffset.Parse(currentDatedSchedule.ProformaArrival));
+        }
+
+        private static void GetBestModel(MLContext mLContext, IDataView dataView)
+        {
+            var settings = new RegressionExperimentSettings { };
+
+            var experiment = mLContext.Auto().CreateRegressionExperiment(settings);
+
+            var progress = new Progress<RunDetail<RegressionMetrics>>(p =>
+            {
+                if (p.ValidationMetrics is not null)
+                {
+                    Console.Write($"Current result: {p.TrainerName}");
+                    Console.Write($"      {p.ValidationMetrics.RSquared}");
+                    Console.Write($"      {p.ValidationMetrics.MeanAbsoluteError}");
+                    Console.WriteLine();
+                }
+            });
+
+            var result = experiment.Execute(
+                dataView,
+                labelColumnName: "ActualizedArrivalDifference",
+                progressHandler: progress);
         }
 
         private static DateTimeOffset GetPredictedActualArrival(
             float predictedActualArrivalDifference,
-            string terminalCode,
-            string localProformaArrivalTimestamp,
-            string localTimeZoneName)
+            DateTimeOffset localProformaArrivalTimestamp)
         {
-            var tz = timeZoneConverter.ConvertToDateTimeZoneFromLocalTimeZoneName(
-                localTimeZoneName,
-                terminalCode);
-
-            var localProformaArrival = timeZoneConverter.ConvertToDateTimeOffset(localProformaArrivalTimestamp, tz);
-
             var diff = TimeSpan.FromSeconds(predictedActualArrivalDifference);
-            return localProformaArrival.Add(diff);
+            return localProformaArrivalTimestamp.Add(diff);
         }
     }
 }

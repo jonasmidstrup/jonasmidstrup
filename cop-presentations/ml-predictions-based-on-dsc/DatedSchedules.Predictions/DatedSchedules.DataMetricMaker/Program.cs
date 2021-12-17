@@ -1,6 +1,5 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
-using DatedSchedules.DataMetricMaker;
 using DatedSchedules.Predictions.Models;
 using InfluxDB.Client;
 using InfluxDB.Client.Api.Domain;
@@ -12,7 +11,7 @@ var timeZoneConverter = new TimeZoneConverter(DateTimeZoneProviders.Tzdb);
 
 var influxDBClient = InfluxDBClientFactory.Create(
     "http://localhost:8086",
-    "8Fr0a7i5niGc6dQTHeMiyasHPeHT974a-y57Nbt3wSgwXdH7UFzUG9ptYCvqy-YfmRH1m9E1C8d5QZ2e0VCAQg==");
+    "VzhI_NOGueC2RpeXIXV6SwW2wmwy5twhgh1S2aU4upO9a5Y2vZ3_vphUxtDZfnCZ8XvDY9UM9DHvrfNAb73H-g==");
 
 using var writeApi = influxDBClient.GetWriteApi();
 
@@ -50,7 +49,6 @@ foreach (var file in files)
                 if (tz is not null)
                 {
                     var localProformaArrivalEpoch = timeZoneConverter.ConvertToDateTimeOffset(record.ProformaArrival, tz);
-                    //var localScheduledArrivalEpoch = timeZoneConverter.ConvertToDateTimeOffset(record.ScheduledArrival, tz);
                     var localActualArrivalEpoch = timeZoneConverter.ConvertToDateTimeOffset(record.ActualArrival, tz);
                     var actualizedArrivalDifference = localActualArrivalEpoch - localProformaArrivalEpoch;
 
@@ -61,11 +59,10 @@ foreach (var file in files)
                             .Tag("previousTerminalCode", record.PreviousTerminalCode?.Trim())
                             .Tag("currentTerminalCode", record.TerminalCode?.Trim())
                             .Tag("measure", "arrival")
-                            .Field("difference", actualizedArrivalDifference.TotalSeconds)
+                            .Field("difference", Convert.ToSingle(actualizedArrivalDifference.TotalSeconds))
                             .Timestamp(localActualArrivalEpoch, WritePrecision.Ns);
 
                     var localProformaDepartureEpoch = timeZoneConverter.ConvertToDateTimeOffset(record.ProformaDeparture, tz);
-                    //var localScheduledDepartureEpoch = timeZoneConverter.ConvertToDateTimeOffset(record.ScheduledDeparture, tz);
                     var localActualDepartureEpoch = timeZoneConverter.ConvertToDateTimeOffset(record.ActualDeparture, tz);
                     var actualizedDepartureDifference = localActualDepartureEpoch - localProformaDepartureEpoch;
 
@@ -76,7 +73,7 @@ foreach (var file in files)
                             .Tag("previousTerminalCode", record.PreviousTerminalCode?.Trim())
                             .Tag("currentTerminalCode", record.TerminalCode?.Trim())
                             .Tag("measure", "departure")
-                            .Field("difference", actualizedArrivalDifference.TotalSeconds)
+                            .Field("difference", Convert.ToSingle(actualizedArrivalDifference.TotalSeconds))
                             .Timestamp(localActualDepartureEpoch, WritePrecision.Ns);
 
                     writeApi.WritePoints("dsc", "teamhydra", arrivalPoint, departurePoint);
