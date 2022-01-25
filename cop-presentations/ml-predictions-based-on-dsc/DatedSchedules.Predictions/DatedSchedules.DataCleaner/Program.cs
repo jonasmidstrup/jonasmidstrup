@@ -20,6 +20,8 @@ csvConfiguration.Delimiter = ",";
 csvConfiguration.MissingFieldFound = null;
 csvConfiguration.IgnoreBlankLines = true;
 
+var vessels = LoadVessels();
+
 foreach (var file in files)
 {
     using (var reader = new StreamReader(file.Path))
@@ -44,6 +46,13 @@ foreach (var file in files)
 
                 if (tz is not null)
                 {
+                    var vessel = vessels.FirstOrDefault(v => v.ImoNumber == record.ImoNumber);
+
+                    if (vessel is null)
+                    {
+                        continue;
+                    }
+
                     var localProformaArrival = timeZoneConverter.ConvertToDateTimeOffset(record.ProformaArrival, tz);
                     var localActualArrival = timeZoneConverter.ConvertToDateTimeOffset(record.ActualArrival, tz);
                     var actualizedArrivalDifference = localActualArrival - localProformaArrival;
@@ -63,7 +72,9 @@ foreach (var file in files)
                         ProformaArrival = localProformaArrival.ToString("o"),
                         ProformaDeparture = localProformaDeparture.ToString("o"),
                         TerminalCode = record.TerminalCode?.Trim(),
-                        VesselCode = record.VesselCode?.Trim()
+                        VesselCode = vessel.VesselCode.Trim(),
+                        MinimumCruisingSpeed = vessel.MinimumCruisingSpeed.GetValueOrDefault(),
+                        MaximumCruisingSpeed = vessel.MaximumCruisingSpeed.GetValueOrDefault()
                     };
 
                     csvWriter.WriteRecord(sanitizedDsc);
@@ -77,3 +88,22 @@ foreach (var file in files)
 Console.WriteLine("All done!");
 
 Console.ReadLine();
+
+static IEnumerable<Vessel> LoadVessels()
+{
+    var csvConfiguration = new CsvConfiguration(CultureInfo.InvariantCulture)
+    {
+        Delimiter = ";",
+        MissingFieldFound = null
+    };
+
+    using (var reader = new StreamReader(@"C:\Temp\Vessel_export_24_01_22.csv"))
+    using (var csvReader = new CsvReader(reader, csvConfiguration))
+    {
+        return csvReader
+            .GetRecords<Vessel>()
+            .ToList()
+            .Where(v => v.VesselTypeCode == "CON" && v.VesselStatus == "Active")
+            .DistinctBy(v => v.Id);
+    }
+}

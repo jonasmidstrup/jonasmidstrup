@@ -33,5 +33,11 @@ namespace DatedSchedules.Predictions.Models
 
         [LoadColumn(9)]
         public float ActualizedDepartureDifference { get; set; }
+
+        [LoadColumn(10)]
+        public double MinimumCruisingSpeed { get; set; }
+
+        [LoadColumn(11)]
+        public double MaximumCruisingSpeed { get; set; }
     }
 }
