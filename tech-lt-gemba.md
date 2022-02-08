@@ -4,7 +4,7 @@
 
 * (Small introduction about myself)
 * To make the Dynamic Scheduling PoC and most of our solutions possible, we need data.
-* Most of this data comes from the EMP - Event streaming platform.
+* Most of this data comes from the EMP - our event streaming platform.
 * One of the things we did last year was to make 7 years of legacy data about dated schedules and port calls from GSIS available on the EMP.
 * This data will be important in our next endeavors as well.
 * Generally it's really important for us, that data is easily available and hopefully we can stream even more data from the EMP in the future.
