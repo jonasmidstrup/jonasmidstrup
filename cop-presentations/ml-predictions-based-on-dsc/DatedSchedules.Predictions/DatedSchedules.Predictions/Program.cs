@@ -59,24 +59,26 @@ namespace DatedSchedules.Predictions
 
             var model = trainingPipeline.Fit(data);
 
-            var crossValidationResults = mlContext.Regression.CrossValidate(
-                data,
-                trainingPipeline,
-                numberOfFolds: 100,
-                labelColumnName: "ActualizedArrivalDifference");
+            //var crossValidationResults = mlContext.Regression.CrossValidate(
+            //    data,
+            //    trainingPipeline,
+            //    numberOfFolds: 100,
+            //    labelColumnName: "ActualizedArrivalDifference");
 
-            var bestMetric = crossValidationResults.OrderByDescending(cvr => cvr.Metrics.RSquared).FirstOrDefault();
-            Console.WriteLine($"Best metric when validating: {bestMetric.Metrics.RSquared}");
+            //var bestMetric = crossValidationResults.OrderByDescending(cvr => cvr.Metrics.RSquared).FirstOrDefault();
+            //Console.WriteLine($"Best metric when validating: {bestMetric.Metrics.RSquared}");
             
             var engine = mlContext.Model.CreatePredictionEngine<SanitizedDatedSchedule, DatedSchedulePrediction>(model);
 
             var exampleDatedSchedule = new SanitizedDatedSchedule
             {
                 VesselCode = "1QM",
-                ArrivalServiceCode = "432",
+                ArrivalServiceCode = "431",
                 TerminalCode = "EGSUCCN",
-                PreviousTerminalCode = "MYTPPTM",
-                ProformaArrival = "2021-01-20T06:20:00.0000000+02:00"
+                PreviousTerminalCode = "SGSINPS",
+                ProformaArrival = "2021-01-13T16:00:00.0000000+08:00",
+                MinimumCruisingSpeed = 0,
+                MaximumCruisingSpeed = 225
             };
 
             var prediction = engine.Predict(exampleDatedSchedule);
