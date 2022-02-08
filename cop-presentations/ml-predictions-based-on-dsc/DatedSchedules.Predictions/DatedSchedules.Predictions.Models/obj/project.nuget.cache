@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BQ3rCG4WWih6dDndnRYFUZAIkn3zDPB6fD2Mr+kvTuqJloxUZPcruxJx7/SPsOfAga++/XQp3LfQwCd26/IUGA==",
+  "dgSpecHash": "yt7zUHhh4gGnwnIcYL3NuOrYYG3tr1asPzqzefkg7Mg1IB2t8sngKYZ9YUGn0tFcGOi4mKPJxuwj8IXIXDys4A==",
   "success": true,
-  "projectFilePath": "C:\\dev\\jonasmidstrup\\DatedSchedules.Predictions\\DatedSchedules.Predictions.Models\\DatedSchedules.Predictions.Models.csproj",
+  "projectFilePath": "C:\\dev\\jonasmidstrup\\cop-presentations\\ml-predictions-based-on-dsc\\DatedSchedules.Predictions\\DatedSchedules.Predictions.Models\\DatedSchedules.Predictions.Models.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\JMI154\\.nuget\\packages\\csvhelper\\27.1.1\\csvhelper.27.1.1.nupkg.sha512",
     "C:\\Users\\JMI154\\.nuget\\packages\\microsoft.csharp\\4.3.0\\microsoft.csharp.4.3.0.nupkg.sha512",
