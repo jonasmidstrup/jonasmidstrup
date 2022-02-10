@@ -9,7 +9,7 @@ https://github.com/Maersk-Global/nucleus-kafka/
 * In the Vessel Scheduling Team, making data available is very important.
 * Most of this data flows through the **EMP** - our **event streaming platform**.
 * One of the things we did last year was to make **7 years of GSIS legacy data of dated schedules and port calls** available on the EMP.
-* For instance, the **Dynamic Scheduling PoC** mentioned by Jonas, was built in a matter of months because we had this data available in the EMP.
+* For instance, the **Dynamic Scheduling PoC** mentioned by Jonas, was built in a matter of months, because we had dated schedule data already available in the EMP.
 * This data will also be important in our next endeavors, when we're going to do **estimation of arrival/departure** etc. as part of Scalable Delivery.
 * So hopefully we will **stream even more data through the EMP** in the future. All teams will benefit from this.
 
