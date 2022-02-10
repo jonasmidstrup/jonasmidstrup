@@ -4,7 +4,7 @@
 
 https://github.com/Maersk-Global/nucleus-kafka/
 
-* My name is **Jonas Midstrup** (second Jonas of the day) and I'm a **Senior Software Engineer**.
+* My name is **Jonas Midstrup** (second Jonas of the day - a few more to come) and I'm a **Senior Software Engineer**.
 
 * In the Vessel Scheduling Team, making data available is very important.
 * Most of this data flows through the **EMP** - our **event streaming platform**.
