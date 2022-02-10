@@ -4,7 +4,7 @@
 
 https://github.com/Maersk-Global/nucleus-kafka/
 
-* **(Small introduction about myself)**
+* My name is **Jonas Midstrup** (second Jonas of the day) and I'm a **Senior Software Engineer in Team Hydra**.
 
 * To make the **Dynamic Scheduling PoC**, **Dated Scheduling API**, **DCSA API** and most of our other solutions possible, we need data.
 * Most of this data flows through the **EMP** - our **event streaming platform**.
