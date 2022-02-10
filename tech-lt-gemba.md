@@ -2,12 +2,15 @@
 
 ## Event streaming and data
 
+https://github.com/Maersk-Global/nucleus-kafka/
+
 * (Small introduction about myself)
 * To make the Dynamic Scheduling PoC and most of our solutions possible, we need data.
-* Most of this data comes from the EMP - our event streaming platform.
-* One of the things we did last year was to make 7 years of legacy data about dated schedules and port calls from GSIS available on the EMP.
-* This data will be important in our next endeavors as well.
-* Generally it's really important for us, that data is easily available and hopefully we can stream even more data from the EMP in the future.
-* We have built a package that makes it alot easier to consume data from the EMP.
-* We're in the process of making it open-source and public for everyone to use and contribute.
-* We have already a few teams in Maersk that use this software package, including our two teams.
+* Most of this data flows through the EMP - our event streaming platform.
+* One of the things we did last year was to make 7 years of GSIS legacy data of dated schedules and port calls available on the EMP.
+* This data will be important in our next endeavors as well for doing estimation of arrival/departure etc.
+* Generally it's really important for us, that data is easily available.
+* Hopefully we can stream even more data through the EMP in the future.
+* We have built a package that makes it alot easier to consume data from the EMP - you can see it here...
+* We have already a few teams in Maersk, that use this software package, including our two teams (Hydra & Diamond).
+* We're also in the process of making it open-source and public for everyone to use and contribute to.
