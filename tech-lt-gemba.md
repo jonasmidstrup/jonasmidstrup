@@ -5,7 +5,7 @@
 https://github.com/Maersk-Global/nucleus-kafka/
 
 * (Small introduction about myself)
-* To make the Dynamic Scheduling PoC and most of our solutions possible, we need data.
+* To make the Dynamic Scheduling PoC, Dated Scheduling API, DCSA API and most of our solutions possible, we need data.
 * Most of this data flows through the EMP - our event streaming platform.
 * One of the things we did last year was to make 7 years of GSIS legacy data of dated schedules and port calls available on the EMP.
 * This data will be important in our next endeavors as well for doing estimation of arrival/departure etc.
