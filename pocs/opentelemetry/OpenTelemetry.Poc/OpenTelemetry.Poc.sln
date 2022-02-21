@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTelemetry.Poc", "OpenTelemetry.Poc\OpenTelemetry.Poc.csproj", "{46856482-E30B-4831-9249-DAD6EB412854}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{46856482-E30B-4831-9249-DAD6EB412854}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46856482-E30B-4831-9249-DAD6EB412854}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46856482-E30B-4831-9249-DAD6EB412854}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46856482-E30B-4831-9249-DAD6EB412854}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {324B973B-D365-48F4-B1B5-4D7AA4C1B09D}
+	EndGlobalSection
+EndGlobal
