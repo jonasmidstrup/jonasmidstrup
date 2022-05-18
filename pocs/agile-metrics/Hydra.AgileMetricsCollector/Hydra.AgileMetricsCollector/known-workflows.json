@@ -1,0 +1,27 @@
+﻿[
+  {
+    "Id": 16985055,
+    "Name": "Release database",
+    "Repository": "nucleus-schedule-planner"
+  },
+  {
+    "Id": 16985056,
+    "Name": "DSC Consumer - Release",
+    "Repository": "nucleus-schedule-planner"
+  },
+  {
+    "Id": 16985058,
+    "Name": "SMDS Vessel Consumer - Release",
+    "Repository": "nucleus-schedule-planner"
+  },
+  {
+    "Id": 17110740,
+    "Name": "SMDS Geo Consumer - Release",
+    "Repository": "nucleus-schedule-planner"
+  },
+  {
+    "Id": 25517338,
+    "Name": "FBR Port Costs Consumer - Release",
+    "Repository": "nucleus-schedule-planner"
+  }
+]

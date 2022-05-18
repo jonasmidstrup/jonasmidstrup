@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32319.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hydra.AgileMetricsCollector", "Hydra.AgileMetricsCollector\Hydra.AgileMetricsCollector.csproj", "{0626DF46-0D31-49EA-8E63-76692B730AD2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0626DF46-0D31-49EA-8E63-76692B730AD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0626DF46-0D31-49EA-8E63-76692B730AD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0626DF46-0D31-49EA-8E63-76692B730AD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0626DF46-0D31-49EA-8E63-76692B730AD2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7BEEC5FC-154C-4B0A-8446-EC24F71E0B40}
+	EndGlobalSection
+EndGlobal
