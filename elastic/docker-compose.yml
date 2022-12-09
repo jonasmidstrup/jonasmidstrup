@@ -25,7 +25,7 @@ services:
       - 9300:9300
 
   grafana:
-    container_name: grafana:
+    container_name: grafana
     image: grafana/grafana
     ports:
       - 3000:3000
